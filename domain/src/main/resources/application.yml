@@ -1,0 +1,21 @@
+spring:
+  amqp:
+    deserialization:
+      trust:
+        all: true
+  rabbitmq:
+    host: localhost
+    virtual-host: vhost
+    username: guest
+    password: guest
+    listener:
+      simple:
+        message-converter:
+          allowed-list:
+            - com.google.protobuf.GeneratedMessageLite$SerializedForm
+            - com.google.protobuf.*
+  application:
+    name: "domain"
+  data:
+    mongodb:
+      uri: "mongodb://localhost:27017/adminka"

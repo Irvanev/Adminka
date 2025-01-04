@@ -1,0 +1,35 @@
+syntax = "proto3";
+
+option java_package = "dev.irvanev.grpc";
+option java_outer_classname = "StudentProto";
+
+service StudentService {
+  rpc CreateStudent(Student) returns (StudentResponse);
+  rpc GetStudentById(StudentRequest) returns (Student);
+  rpc UpdateStudent(Student) returns (StudentResponse);
+  rpc DeleteStudent(StudentRequest) returns (StudentResponse);
+  rpc ListStudents(Empty) returns (StudentListResponse);
+}
+
+message Student {
+  string id = 1;
+  string first_name = 2;
+  string last_name = 3;
+  int32 age = 4;
+  string major = 5;
+}
+
+message StudentRequest {
+  string id = 1;
+}
+
+message StudentResponse {
+  bool success = 1;
+  string message = 2;
+}
+
+message StudentListResponse {
+  repeated Student students = 1;
+}
+
+message Empty {}

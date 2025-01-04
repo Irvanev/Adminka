@@ -1,0 +1,22 @@
+global:
+  scrape_interval: 15s
+  evaluation_interval: 15s
+
+scrape_configs:
+  - job_name: "prometheus"
+    static_configs:
+      - targets: ["localhost:9090"]
+
+  - job_name: "redis"
+    static_configs:
+      - targets: ["localhost:6379"]
+
+  - job_name: "mongo"
+    metrics_path: "/metrics"
+    static_configs:
+      - targets: ["localhost:27017"]
+
+  - job_name: "spring-boot-gateway"
+    metrics_path: "/actuator/prometheus"
+    static_configs:
+      - targets: ["gateway:8081"]
