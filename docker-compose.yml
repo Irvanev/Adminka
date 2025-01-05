@@ -4,7 +4,7 @@ services:
 
   mongo:
     image: mongo:latest
-    container_name: MongoDB
+    container_name: mongo
     restart: always
     volumes:
       - mongo-data:/data/db
@@ -15,7 +15,7 @@ services:
       - students-network
   mongo-express:
     image: mongo-express:latest
-    container_name: mongo-express
+    container_name: mongoui
     ports:
       - "8088:8081"
     environment:
@@ -28,7 +28,7 @@ services:
 
   rabbitmq:
     image: rabbitmq:management
-    container_name: RabbitMQ
+    container_name: rabbitmq
     ports:
       - "5672:5672"
       - "15672:15672"
@@ -38,7 +38,7 @@ services:
 
   redis:
     image: redis:latest
-    container_name: Redis
+    container_name: redis
     ports:
       - "6379:6379"
     networks:
@@ -46,7 +46,7 @@ services:
 
   elasticsearch:
     image: docker.elastic.co/elasticsearch/elasticsearch:8.8.0
-    container_name: Elasticsearch
+    container_name: elk
     restart: unless-stopped
     ports:
       - "9200:9200"
@@ -60,7 +60,7 @@ services:
 
   kibana:
     image: docker.elastic.co/kibana/kibana:8.8.0
-    container_name: Kibana
+    container_name: kibana
     environment:
       - 'ELASTICSEARCH_HOSTS=["http://elasticsearch:9200"]'
     ports:
@@ -72,7 +72,7 @@ services:
 
   logstash:
     image: docker.elastic.co/logstash/logstash:8.8.0
-    container_name: Logstash
+    container_name: logstash
     ports:
       - "5044:5044"
     volumes:
@@ -84,7 +84,7 @@ services:
 
   prometheus:
     image: prom/prometheus
-    container_name: Prometheus
+    container_name: prometheus
     volumes:
       - "./prometheus.yml:/etc/prometheus/prometheus.yml"
     ports:
@@ -94,7 +94,7 @@ services:
 
   grafana:
     image: grafana/grafana-enterprise
-    container_name: Grafana
+    container_name: grafana
     restart: unless-stopped
     ports:
       - '3000:3000'
@@ -105,6 +105,30 @@ services:
       - students-network
     depends_on:
       - prometheus
+
+  domain-service:
+    build:
+      context: ./domain
+      dockerfile: Dockerfile
+    container_name: domain-service
+    depends_on:
+      - mongo
+      - rabbitmq
+    networks:
+      - students-network
+
+  gateway-service:
+    build:
+      context: ./gateway
+      dockerfile: Dockerfile
+    container_name: gateway-service
+    ports:
+      - "8081:8081"
+    depends_on:
+      - domain-service
+    networks:
+      - students-network
+
 networks:
   students-network:
 

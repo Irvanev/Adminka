@@ -18,7 +18,7 @@ public class StudentController {
     private final StudentServiceGrpc.StudentServiceBlockingStub stub;
 
     public StudentController() {
-        ManagedChannel channel = ManagedChannelBuilder.forAddress("localhost", 8080)
+        ManagedChannel channel = ManagedChannelBuilder.forAddress("domain-service", 8080)
                 .usePlaintext()
                 .build();
         this.stub = StudentServiceGrpc.newBlockingStub(channel);

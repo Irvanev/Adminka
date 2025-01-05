@@ -24,7 +24,7 @@ public class GrpcConfiguration implements CommandLineRunner {
                 .build();
 
         server.start();
-        System.out.println("gRPC Server started on port 8080");
+        System.out.println("Server started, listening on " + server.getPort());
         server.awaitTermination();
     }
 }
