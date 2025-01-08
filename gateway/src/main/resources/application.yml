@@ -7,18 +7,14 @@ spring:
       host: redis
 
 logging:
+  file:
+    name: /Users/irvanev/development/Adminka/logs/application.log
   level:
     root: INFO
-    org.springframework.web: DEBUG
-    org.springframework.cache: DEBUG
-  appender:
-    console:
-      enabled: true
-    logstash:
-      enabled: true
-      destination: logstash:5044
-  logstash:
-    enabled: true
+    org.springframework: DEBUG
+  pattern:
+    file: "%d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger{36} - %msg%n"
+    console: "%d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger{36} - %msg%n"
 
 management:
   endpoints:

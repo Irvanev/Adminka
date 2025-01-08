@@ -2,7 +2,7 @@ FROM openjdk:21
 
 WORKDIR /app
 
-COPY build/libs/gateway-1.0.jar /app/gateway-service.jar
+COPY build/libs/gateway-1.2.jar /app/gateway-service.jar
 
 EXPOSE 8081
 
