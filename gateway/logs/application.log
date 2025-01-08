@@ -1,0 +1,18 @@
+2025-01-08 20:39:40 [Test worker] INFO  o.s.t.c.s.AnnotationConfigContextLoaderUtils - Could not detect default configuration classes for test class [dev.irvanev.gateway.GatewayApplicationTests]: GatewayApplicationTests does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+2025-01-08 20:39:41 [Test worker] INFO  o.s.b.t.c.SpringBootTestContextBootstrapper - Found @SpringBootConfiguration dev.irvanev.gateway.GatewayApplication for test class dev.irvanev.gateway.GatewayApplicationTests
+2025-01-08 20:39:41 [Test worker] INFO  d.i.gateway.GatewayApplicationTests - Starting GatewayApplicationTests using Java 21.0.4 with PID 62874 (started by irvanev in /Users/irvanev/development/Adminka/gateway)
+2025-01-08 20:39:41 [Test worker] INFO  d.i.gateway.GatewayApplicationTests - No active profile set, falling back to 1 default profile: "default"
+2025-01-08 20:39:41 [Test worker] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Multiple Spring Data modules found, entering strict repository configuration mode
+2025-01-08 20:39:41 [Test worker] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+2025-01-08 20:39:41 [Test worker] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 6 ms. Found 0 Redis repository interfaces.
+2025-01-08 20:39:42 [Test worker] INFO  o.s.b.a.e.web.EndpointLinksResolver - Exposing 3 endpoints beneath base path '/actuator'
+2025-01-08 20:39:42 [Test worker] INFO  d.i.gateway.GatewayApplicationTests - Started GatewayApplicationTests in 1.645 seconds (process running for 2.604)
+2025-01-08 20:49:54 [Test worker] INFO  o.s.t.c.s.AnnotationConfigContextLoaderUtils - Could not detect default configuration classes for test class [dev.irvanev.gateway.GatewayApplicationTests]: GatewayApplicationTests does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+2025-01-08 20:49:54 [Test worker] INFO  o.s.b.t.c.SpringBootTestContextBootstrapper - Found @SpringBootConfiguration dev.irvanev.gateway.GatewayApplication for test class dev.irvanev.gateway.GatewayApplicationTests
+2025-01-08 20:49:54 [Test worker] INFO  d.i.gateway.GatewayApplicationTests - Starting GatewayApplicationTests using Java 21.0.4 with PID 63214 (started by irvanev in /Users/irvanev/development/Adminka/gateway)
+2025-01-08 20:49:54 [Test worker] INFO  d.i.gateway.GatewayApplicationTests - No active profile set, falling back to 1 default profile: "default"
+2025-01-08 20:49:55 [Test worker] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Multiple Spring Data modules found, entering strict repository configuration mode
+2025-01-08 20:49:55 [Test worker] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+2025-01-08 20:49:55 [Test worker] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 35 ms. Found 0 Redis repository interfaces.
+2025-01-08 20:49:56 [Test worker] INFO  o.s.b.a.e.web.EndpointLinksResolver - Exposing 3 endpoints beneath base path '/actuator'
+2025-01-08 20:49:56 [Test worker] INFO  d.i.gateway.GatewayApplicationTests - Started GatewayApplicationTests in 1.957 seconds (process running for 2.575)

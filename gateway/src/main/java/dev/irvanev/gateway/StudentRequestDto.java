@@ -37,4 +37,14 @@ public class StudentRequestDto {
     public void setMajor(String major) {
         this.major = major;
     }
+
+    @Override
+    public String toString() {
+        return "StudentRequestDto{" +
+                "firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", age=" + age +
+                ", major='" + major + '\'' +
+                '}';
+    }
 }

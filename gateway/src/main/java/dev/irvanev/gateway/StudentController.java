@@ -4,6 +4,8 @@ import dev.irvanev.grpc.StudentProto;
 import dev.irvanev.grpc.StudentServiceGrpc;
 import io.grpc.ManagedChannel;
 import io.grpc.ManagedChannelBuilder;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.web.bind.annotation.*;
@@ -15,6 +17,7 @@ import java.util.List;
 @RequestMapping("/api/students")
 public class StudentController {
 
+    private static final Logger log = LoggerFactory.getLogger(StudentController.class);
     private final StudentServiceGrpc.StudentServiceBlockingStub stub;
 
     public StudentController() {
@@ -27,6 +30,7 @@ public class StudentController {
     @PostMapping
     @CacheEvict(value = {"studentsList", "students"}, allEntries = true)
     public String createStudent(@RequestBody StudentRequestDto studentRequest) {
+        log.info("Creating student {}", studentRequest);
         StudentProto.Student request = StudentProto.Student.newBuilder()
                 .setFirstName(studentRequest.getFirstName())
                 .setLastName(studentRequest.getLastName())
@@ -41,6 +45,7 @@ public class StudentController {
     @GetMapping("/{id}")
     @Cacheable(value = "students", key = "#id", unless = "#result == null")
     public StudentDto getStudentById(@PathVariable String id) {
+        log.info("Getting student {}", id);
         try {
             System.out.println("Fetching data without cache...");
             Thread.sleep(5000);
@@ -58,6 +63,7 @@ public class StudentController {
     @GetMapping
     @Cacheable(value = "studentsList", unless = "#result == null || #result.isEmpty()")
     public List<StudentDto> listStudents() {
+        log.info("Listing students...");
         try {
             System.out.println("Fetching data without cache...");
             Thread.sleep(5000);
@@ -77,8 +83,9 @@ public class StudentController {
     }
 
     @PutMapping("/{id}")
-    @CacheEvict(value = "students", key = "#id")
+    @CacheEvict(value = {"studentsList", "students"}, allEntries = true)
     public String updateStudent(@PathVariable String id, @RequestBody StudentRequestDto studentRequest) {
+        log.info("Updating student {}", id);
         StudentProto.Student request = StudentProto.Student.newBuilder()
                 .setId(id)
                 .setFirstName(studentRequest.getFirstName())
@@ -93,8 +100,9 @@ public class StudentController {
     }
 
     @DeleteMapping("/{id}")
-    @CacheEvict(value = {"students", "studentsList"}, key = "#id")
+    @CacheEvict(value = {"studentsList", "students"}, allEntries = true)
     public String deleteStudent(@PathVariable String id) {
+        log.info("Deleting student {}", id);
         StudentProto.StudentRequest request = StudentProto.StudentRequest.newBuilder().setId(id).build();
         StudentProto.StudentResponse response = stub.deleteStudent(request);
         return response.getMessage();

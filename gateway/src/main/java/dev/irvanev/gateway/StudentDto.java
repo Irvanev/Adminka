@@ -57,4 +57,15 @@ public class StudentDto {
     public void setMajor(String major) {
         this.major = major;
     }
+
+    @Override
+    public String toString() {
+        return "StudentDto{" +
+                "id='" + id + '\'' +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", age=" + age +
+                ", major='" + major + '\'' +
+                '}';
+    }
 }

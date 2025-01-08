@@ -1,4 +1,4 @@
-version: '3.9'
+version: '3.8'
 
 services:
 
@@ -68,7 +68,7 @@ services:
     networks:
       - students-network
     volumes:
-      - ./elasticsearch:/usr/share/elasticsearch/data
+      #- ./elasticsearch:/usr/share/elasticsearch/data
       - es-data:/usr/share/elasticsearch/data
 
   kibana:
@@ -125,7 +125,7 @@ services:
       - "8081:8081"
     depends_on:
       - domain-service
-    environment:
+    volumes:
       - ./logs/application.log:/app/logs/application.log
     networks:
       - students-network
